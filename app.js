@@ -4,6 +4,9 @@ const app = express();
 const fetch = require("node-fetch");
 const FormData = require("form-data");
 const bodyParser = require("body-parser");
+const utf8 = require('utf8');
+const { response } = require("express");
+const { json } = require("express/lib/response");
 
 // const db = require("./config/db");
 // const Scam = require("./models/user");
@@ -17,30 +20,33 @@ app.use(bodyParser.json());
 //     console.log("berhasil terkoneksi dengan database")}
 // );
 
-app.get("/hasil", async (req, res) => {
+app.post("/hasil", async (req, res) => {
     try {
-        // console.log(req, res);
-        // const lemparan = req.body.lemparan;
-        const {data} = req.body;
-        console.log(data);
+        
+        const {input} = req.body;
+        console.log(input);
 
-        const form = new FormData();
-        console.log(form);
-
-        const response = await fetch('http://127.0.0.1:8080/descam/predict', {
+        const response = await fetch('https://classifiermodel-k5eyux7eqa-et.a.run.app/descam/predict', {
             method: 'POST',
-            header: {'Content-Type': 'application/json'},
-            body: JSON.stringify({input: data}),
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'},
+            body: JSON.stringify({input:input}),
         })
 
-        const responseJson = await response.json();
+        // res = await response.json();
+        console.log(res);
 
-        res.json();
+        // console.log(typeof(responseJson));
+
+        // res.json();
+
+        return res.json(await response.json());
     } 
     catch (err) {
         console.error(err.message);
         res.status(500).send("server error");
     }
+
 });
 
 // const PORT = 8070;
