@@ -1,12 +1,14 @@
 require('dotenv').config();
-const mysql = require('mysql');
-const sequelize = require("sequelize");
-
-const db = new sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD,{
-  host: process.env.DB_HOST,
-  dialect:"mysql"
-}); 
-
-db.sync({});
-
-module.exports = db;
+module.exports = {
+    HOST: process.env.DB_HOST,
+    USER: process.env.DB_USERNAME,
+    PASSWORD: process.env.DB_PASSWORD,
+    DB: 'descam-db',
+    dialect: 'mysql',
+    dialecOptions: {
+        useUCT: false,
+        dataString: true,
+        typecast: true
+    },
+    timezone: '+07:00'
+}

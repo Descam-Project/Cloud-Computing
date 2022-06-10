@@ -1,27 +1,42 @@
 
 const express = require("express");
 const app = express();
-const fetch = require("node-fetch");
 const bodyParser = require("body-parser");
-const { response } = require("express");
-const { json } = require("express/lib/response");
-const db = require("./config/db");
-// const History = db.History;
-// const db = require("./config/db");
-// const Scam = require("./models/user");
+const fetch = require("node-fetch");
+const {sequelize} = require('./model');
+require('dotenv').config();
 
 app.get("/", (req, res) => res.send("respons express berhasil"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-db.authenticate().then(() =>{
+sequelize.authenticate().then(() =>{
     console.log("berhasil terkoneksi dengan database")}
 );
 
+app.post("/hasil", async (req, res) => {
+    try {
+        
+        const {input} = req.body;
+        console.log(input);
 
+        const response = await fetch('https://classifiermodel-k5eyux7eqa-et.a.run.app/descam/predict', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'},
+            body: JSON.stringify({input:input}),
+        })
 
-const history_route = require('./model/history')
+        return res.json(await response.json());
+    } 
+    catch (err) {
+        console.error(err.message);
+        res.status(500).send("server error");
+    }
+});
+
+const history_route = require('./routes/history_route');
 app.use('/History', history_route);
 
 

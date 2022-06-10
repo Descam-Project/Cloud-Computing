@@ -1,14 +1,15 @@
-const db = require("../config/db");
+const db = require("../model");
 require('dotenv').config();
 const History = db.History;
-const User = db.User;
 
-const insertHistory = async (req, res) => {
+const addHistory = async (req, res) => {
     try {
+        const { Email, Text, Result } = req.body
+        console.log(Email)
         const newHistory = new History ({
-            email,
-            text,
-            result
+            Email,
+            Text,
+            Result
         });
         await newHistory.save();
         res.json({error:"false",status: "success", message:"success insert data"});
@@ -20,4 +21,4 @@ const insertHistory = async (req, res) => {
     }
 }
 
-module.exports = {insertHistory}
+module.exports = {addHistory}
