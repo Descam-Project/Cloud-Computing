@@ -3,7 +3,7 @@ module.exports = {
     HOST: process.env.DB_HOST,
     USER: process.env.DB_USERNAME,
     PASSWORD: process.env.DB_PASSWORD,
-    DB: 'descam-db',
+    DB: process.env.DB_NAME,
     dialect: 'mysql',
     dialecOptions: {
         useUCT: false,
