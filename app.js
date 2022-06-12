@@ -1,4 +1,3 @@
-
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -20,7 +19,7 @@ app.post("/hasil", async (req, res) => {
         
         const {text} = req.body;
 
-        const response = await fetch('https://classifiermodel-k5eyux7eqa-et.a.run.app/descam/predict', {
+        const response = await fetch('https://127.0.0.1:5000/descam/predict', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8'},
@@ -47,6 +46,6 @@ app.use('/History', history_route);
 
 
 // const PORT = 8070;
-app.listen(8070, () =>
-    console.log(`Running server in port 8070`)
+app.listen(process.env.PORT || 5000, () =>
+    console.log(`Running server in port ${process.env.PORT || 5000}`)
 );
