@@ -5,14 +5,13 @@ DOKUMENTATION
 # 1. /hasil
 ### Method: POST
 ### Request Body:
-### 
-{
+### {
     "Text": "text"
 } 
 Text as STRING:(mandatory)
 
 ### Response:
-{
+### {
     "output": "Ilegal",
     "success": true
 } 
