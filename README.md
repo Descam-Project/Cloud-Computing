@@ -3,14 +3,14 @@
 DOKUMENTATION
 
 # 1. /hasil
-## Method: POST
-## Request Body:
-{
+### Method: POST
+### Request Body:
+### {
     "Text": "text"
-}
-Text as STRING:(mandatory)
+### }
+### Text as STRING:(mandatory)
 
-## Response:
+### Response:
 {
     "output": "Ilegal",
     "success": true
@@ -33,3 +33,4 @@ Result as STRING:(mandatory)
     "error": "false", 
     "status": "success",
     "message": " success insert data"
+}
