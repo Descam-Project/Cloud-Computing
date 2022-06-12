@@ -1,8 +1,8 @@
-Backend Descam Project Using Node.js, Express.js, and Mysql
+#Backend Descam Project Using Node.js, Express.js, and Mysql
 
 DOKUMENTATION
 
-1. /hasil
+#1. /hasil
 Method: POST
 Request Body:
 {
@@ -16,7 +16,7 @@ Response:
     "success": true
 }
 
-2. /History/addHistory
+#2. /History/addHistory
 Method: POST
 Request Body:
 {
@@ -33,4 +33,3 @@ Response:
     "error": "false", 
     "status": "success",
     "message": " success insert data"
-}
